@@ -1,0 +1,50 @@
+[project]
+name = "adk-connectors"
+version = "0.1.0"
+description = "Per-user connector registry for Google ADK: users register MCP/OpenAPI/OAuth2 connectors, the ADK runner picks them up at request time."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+keywords = ["google-adk", "adk", "agents", "mcp", "openapi", "oauth2", "connectors", "llm"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries",
+  "Framework :: AsyncIO",
+]
+dependencies = [
+  "google-adk[mcp]>=2.15,<3",
+  "pydantic>=2",
+  "cryptography>=42",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.110", "uvicorn>=0.29"]
+test = ["pytest", "pytest-asyncio", "httpx", "fastapi", "uvicorn"]
+
+[project.urls]
+Homepage = "https://github.com/Pakshalbhandari/adk-connectors"
+Source = "https://github.com/Pakshalbhandari/adk-connectors"
+Issues = "https://github.com/Pakshalbhandari/adk-connectors/issues"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+adk_connectors = ["py.typed"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["src", "."]
